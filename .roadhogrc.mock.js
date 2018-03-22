@@ -10,10 +10,11 @@ const proxy = {
   // 支持值为 Object 和 Array
 
   'GET /api/userDetail': {
-      name: 'Serati Ma',
+      github: '',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-      userid: '00000001',
-      notifyCount: 12,
+      email: '540846207@qq.com',
+      status: 'success',
+      nick_name: 'zero',
   },
 
   'GET /api/currentUser': {
@@ -128,4 +129,11 @@ const proxy = {
   },
 };
 
-export default noProxy ? {} : delay(proxy, 1000);
+// export default noProxy ? {} : delay(proxy, 1000);
+
+export default {
+  'GET /api/(.*)': 'http://192.168.0.105:3000',
+  'POST /api/(.*)': 'http://192.168.0.105:3000',
+  // 'PUT /api/(.*)': 'http://192.168.2.72:10520/',
+  // 'DELETE /api/(.*)': 'http://192.168.2.72:10520/',
+};

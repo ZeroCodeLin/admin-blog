@@ -138,7 +138,7 @@ class BasicLayout extends React.PureComponent {
   
   render() {
     const {
-      currentUser, collapsed, fetchingNotices, notices, routerData, match, location,
+      userInfo, collapsed, fetchingNotices, notices, routerData, match, location,
     } = this.props;
     const bashRedirect = this.getBashRedirect();
     const layout = (
@@ -159,7 +159,7 @@ class BasicLayout extends React.PureComponent {
           <Header style={{ padding: 0 }}>
             <GlobalHeader
               logo={logo}
-              currentUser={{name:"zero"}}
+              currentUser={{name:"zero",avatar:userInfo.avatar}}
               collapsed={collapsed}
               isMobile={this.state.isMobile}
               onCollapse={this.handleMenuCollapse}
@@ -194,25 +194,10 @@ class BasicLayout extends React.PureComponent {
           </Content>
           <Footer style={{ padding: 0 }}>
             <GlobalFooter
-              links={[{
-                key: 'Pro 首页',
-                title: 'Pro 首页',
-                href: 'http://pro.ant.design',
-                blankTarget: true,
-              }, {
-                key: 'github',
-                title: <Icon type="github" />,
-                href: 'https://github.com/ant-design/ant-design-pro',
-                blankTarget: true,
-              }, {
-                key: 'Ant Design',
-                title: 'Ant Design',
-                href: 'http://ant.design',
-                blankTarget: true,
-              }]}
+              
               copyright={
                 <Fragment>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+                  Copyright <Icon type="copyright" /> 2018 Zero
                 </Fragment>
               }
             />
@@ -232,6 +217,6 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(({ user, global, loading }) => ({
-  currentUser: user.currentUser,
+  userInfo: user.userInfo,
   collapsed: global.collapsed,
 }))(BasicLayout);

@@ -15,20 +15,13 @@ export default {
 
     effects: {
         *fetchList({ payload }, { call, put }) {
-            // yield put({
-            //     type: 'changeLoading',
-            //     payload: true,
-            // });
             const response = yield call(getEssayList, payload);
             yield put({
                 type: 'getList',
                 payload: { ...response, pagination: payload },
             });
-            // yield put({
-            //     type: 'changeLoading',
-            //     payload: false,
-            // });
-        }
+        },
+        
     },
 
     reducers: {

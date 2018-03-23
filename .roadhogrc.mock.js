@@ -9,29 +9,25 @@ const noProxy = process.env.NO_PROXY === 'true';
 const proxy = {
   // 支持值为 Object 和 Array
 
-  'GET /api/userDetail': {
-      github: '',
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-      email: '540846207@qq.com',
+  'GET /api/users/detail': {
+      data:{
+        github: '',
+        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+        email: '540846207@qq.com',
+        nick_name: 'zero',
+      },
       status: 'success',
-      nick_name: 'zero',
   },
 
-  'GET /api/currentUser': {
-    $desc: "获取当前用户接口",
-    $params: {
-      pageSize: {
-        desc: '分页',
-        exp: 2,
-      },
-    },
-    $body: {
-      name: 'Serati Ma',
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-      userid: '00000001',
-      notifyCount: 12,
-    },
+  'POST /api/blog/lists': {
+    data: [
+      {title:'demo',id:1,content:'asdadsasd'},
+      {title:'demo2',id:2,content:'asdadsasd'},
+      {title:'demo3',id:3,content:'asdadsasd'},
+      {title:'demo4',id:4,content:'asdadsasd'}
+    ]
   },
+  
   // GET POST 可省略
   'GET /api/users': [{
     key: '1',
@@ -132,8 +128,10 @@ const proxy = {
 // export default noProxy ? {} : delay(proxy, 1000);
 
 export default {
-  'GET /api/(.*)': 'http://192.168.0.105:3000',
-  'POST /api/(.*)': 'http://192.168.0.105:3000',
+  'GET /api/(.*)': 'http://127.0.0.1:3000',
+  'POST /api/(.*)': 'http://127.0.0.1:3000',
+  // 'GET /api/(.*)': 'http://192.168.0.105:3000',
+  // 'POST /api/(.*)': 'http://192.168.0.105:3000',
   // 'PUT /api/(.*)': 'http://192.168.2.72:10520/',
   // 'DELETE /api/(.*)': 'http://192.168.2.72:10520/',
 };

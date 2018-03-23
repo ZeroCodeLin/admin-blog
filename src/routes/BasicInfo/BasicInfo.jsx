@@ -40,10 +40,10 @@ class BasicInfo extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                // this.props.dispatch({
-                //     type: 'user/fetchUpdate',
-                //     payload: values,
-                // });
+                this.props.dispatch({
+                    type: 'user/update',
+                    payload: values,
+                });
                 console.log(values)
             }
         });

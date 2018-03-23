@@ -24,6 +24,7 @@ export default class LoginPage extends Component {
   handleSubmit = (err, values) => {
     const { type } = this.state;
     if (!err) {
+      console.log(values)
       this.props.dispatch({
         type: 'login/login',
         payload: {
@@ -63,7 +64,7 @@ export default class LoginPage extends Component {
               !login.submitting &&
               this.renderMessage('账户或密码错误（admin/888888）')
             }
-            <UserName name="userName" placeholder="admin/user" />
+            <UserName name="email" placeholder="admin/user" />
             <Password name="password" placeholder="888888/123456" />
           </Tab>
           <Tab key="mobile" tab="手机号登录">

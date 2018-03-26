@@ -157,3 +157,14 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-
 export function isUrl(path) {
   return reg.test(path);
 }
+
+
+// 
+
+export function getCookie(name){
+  var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+  if(arr=document.cookie.match(reg))
+    return unescape(arr[2]);
+  else
+    return null;
+}

@@ -3,6 +3,7 @@ import { notification } from 'antd';
 import { routerRedux } from 'dva/router';
 import store from '../index';
 
+
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -47,12 +48,15 @@ export default function request(url, options) {
     credentials: 'include',
   };
   const newOptions = { ...defaultOptions, ...options };
+  const token = localStorage.getItem('Authorization')
+ 
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
         ...newOptions.headers,
+        Authorization: `Bearer ${token}`
       };
       newOptions.body = JSON.stringify(newOptions.body);
     } else {
@@ -61,8 +65,13 @@ export default function request(url, options) {
         Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
         ...newOptions.headers,
+        Authorization: `Bearer ${token}`
       };
     }
+  }else{
+    newOptions.headers = {
+      Authorization: `Bearer ${token}`
+    };
   }
 
   return fetch(url, newOptions)

@@ -6,7 +6,6 @@ export default {
 
     state: {
         userInfo:{},
-        status: undefined,
     },
 
     effects: {

@@ -13,13 +13,16 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
       // Login successfully
-      debugger
       if (response.status === 'success') {
+        localStorage.setItem('Authorization', response.token || '')
+        yield put({
+          type: 'changeLoginStatus',
+          payload: {
+            ...response,
+            currentAuthority: "user",
+          },
+        });
         reloadAuthorized();
         yield put(routerRedux.push('/'));
       }
@@ -40,6 +43,7 @@ export default {
             currentAuthority: 'guest',
           },
         });
+        set
         reloadAuthorized();
         yield put(routerRedux.push('/user/login'));
       }

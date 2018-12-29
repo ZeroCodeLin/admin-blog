@@ -1,30 +1,43 @@
-import '@babel/polyfill';
-import 'url-polyfill';
-import dva from 'dva';
+import Vue from 'vue';
+import App from './app'
+import router from './router'
+import iView from 'iview';
+import iEditor from 'iview-editor';
+import 'iview/dist/styles/iview.css';  
+import 'iview-editor/dist/iview-editor.css';
 
-import createHistory from 'history/createHashHistory';
-// user BrowserHistory
-// import createHistory from 'history/createBrowserHistory';
-import createLoading from 'dva-loading';
-import 'moment/locale/zh-cn';
-import './rollbar';
+// require('../mock/mock.js')
 
-import './index.less';
-// 1. Initialize
-const app = dva({
-  history: createHistory(),
-});
+// import { Layout, Sider, Header, Content, Footer, Menu, MenuItem, Icon, Row, Col, Tabs, TabPane, Table, Message, Form, FormItem, Input, Button, Progress, Modal, Upload  } from 'iview';
+// Vue.component('Layout', Layout);
+// Vue.component('Sider', Sider);
+// Vue.component('Header', Header);
+// Vue.component('Content', Content), 
+// Vue.component('Footer', Footer);
+// Vue.component('Menu', Menu);
+// Vue.component('MenuItem', MenuItem);
+// Vue.component('Row', Row);
+// Vue.component('Col', Col);
+// Vue.component('Icon', Icon);
+// Vue.component('Tabs', Tabs);
+// Vue.component('TabPane', TabPane);
+// Vue.component('Table', Table);
+// Vue.component('Input', Input);
+// Vue.component('Form', Form);
+// Vue.component('FormItem', FormItem);
+// Vue.component('Button', Button);
+// Vue.component('Progress', Progress);
+// Vue.component('Modal', Modal);
+// Vue.component('Upload', Upload);
 
-// 2. Plugins
-app.use(createLoading());
+// Vue.prototype.$Message = Message;
+Vue.use(iEditor);
+Vue.use(iView);
 
-// 3. Register global model
-app.model(require('./models/global').default);
-
-// 4. Router
-app.router(require('./router').default);
-
-// 5. Start
-app.start('#root');
-
-export default app._store;  // eslint-disable-line
+new Vue({
+    el: "#app",
+    // template: '<App/>',
+    // components:{ App },
+    router,
+    render: h => h(App)
+})
